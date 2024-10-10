@@ -1,0 +1,45 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+    ViewBag.Title = @Model?.Value("pageTitle") ?? null;
+
+    var backgroundImage = Model?.Value<IPublishedContent>("heroBackgroundImage")?.Url() ?? "";
+    var signatureImage = Model?.Value<IPublishedContent>("aboutsignatureImage")?.Url() ?? "";
+}
+
+<section class="hero">
+    <div class="background" style="background-image:url(@backgroundImage); background-size: cover; background-position: 60%;"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="headline">@Model?.Value("heroHeadline")</h1>
+            <p class="ingress">@Model?.Value("heroText")</p>
+            <div>
+                <a href="@Model?.Value("heroButtonLinkUrl")" class="btn-primary">@Model.Value("heroButtonText")</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="" class="about-us">
+    <div class="container">
+        <div class="content">
+            <div class="headline">
+                <h5>@Model.Value("aboutUsSectionTitle")</h5>
+                <h2>@Model.Value("aboutUsHeadline")</h2>
+            </div>
+            <blockquote class="quote">@Model.Value("aboutUsQuote")</blockquote>
+            <p>@Model.Value("aboutUsQuoteContent")</p>
+            <div class="signature-container">
+                <img class="signature-img" src="@signatureImage" alt="@Model.Value("aboutUsSignature")">
+                <div class="clarification">
+                    <p class="name">@Model.Value("aboutUsSignature")</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            
+        </div>
+    </div>
+    
+</section>
